@@ -1,0 +1,33 @@
+Steps to Create Infrastructure for the Project
+
+1. Install and Configure AWS CLI
+Install the AWS CLI on your system.
+Run the following command and provide your IAM credentials:
+aws configure
+Enter Access Key, Secret Key, Region, and Output format.
+
+2. Create SSH Key Pair
+Navigate to the Terraform directory.
+Generate a public and private key pair using:
+ssh-keygen
+Ensure the key name is terra-key.
+
+3. Initialize Terraform
+Run the command:
+terraform init
+
+4. Validate Terraform Configuration
+Run:
+terraform validate
+
+5. Generate Terraform Plan
+Run:
+terraform plan
+
+6. Create Infrastructure
+Run:
+terraform apply -auto-approve
+
+7. Destroy Infrastructure (Optional)
+To delete all created resources, run:
+terraform destroy -auto-approve
