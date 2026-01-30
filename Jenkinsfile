@@ -14,13 +14,13 @@ pipeline {
         }
         stage("Cloning Code") {
             steps {
-                git url: "https://github.com/Bakhtawarkhan90/devops-assessment.git", branch: "main"
+                git url: "https://github.com/Bakhtawarkhan90/DevOps-Assigment.git", branch: "main"
             }
         }
         stage("Sonarqube Code Analysis") {
             steps {
                 withSonarQubeEnv("Sonar") {
-                    sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName='devops-assessment -Dsonar.projectKey='devops-assessment -X"
+                    sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=Devops-Assigment -Dsonar.projectKey=Devops-Assigment -X"
                 }
             }
         }
@@ -35,14 +35,14 @@ pipeline {
             steps {
                 script {
                     sh """
-                    curl -u admin:admin "http://13.127.216.115:9000/api/measures/component?component='devops-assessment&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density" -o sonar-report.json
+                    curl -u admin:admin "http://172.18.207.253:9000/api/measures/component?component='DevOps-Assigment&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density" -o sonar-report.json
                     """
                 }
             }
         }
          stage("Building Frontend Image") {
             steps {
-                dir('devops-assessment/frontend') {
+                dir('DevOps-Assigment/frontend') {
                     sh 'docker build . -t bakhtawar375/frontend:latest'
                 }
             }
@@ -50,7 +50,7 @@ pipeline {
 
         stage("Building Backend Image") {
             steps {
-                dir('devops-assessment/backend') {
+                dir('DevOps-Assigment/backend') {
                     sh 'docker build . -t bakhtawar375/backend:latest'
                 }
             }
